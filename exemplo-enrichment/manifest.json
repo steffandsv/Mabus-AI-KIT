@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "plugin_id": "exemplo.enrichment-fiscal",
+  "name": "Indicador Fiscal do Órgão",
+  "description": "Exibe um badge com a nota fiscal do ente federativo associado ao órgão contratante em cada licitação. Demonstra o padrão de Data Enrichment.",
+  "version": "1.0.0",
+  "type": "integration_connector",
+  "category": "analytics",
+  "icon_url": "/img/plugins/fiscal-badge.png",
+  "features": [
+    "Badge visual com nota fiscal ao lado do nome do órgão",
+    "Painel detalhado na página da licitação com indicadores",
+    "Dados baseados no código IBGE do município"
+  ],
+  "publisher": {
+    "developer_id": "mabus-team",
+    "legal_region": "BR"
+  },
+  "entrypoints": {
+    "ui_slots": [],
+    "enrichment_slots": [
+      {
+        "slot_id": "licitacao.detail.orgao_badge",
+        "priority": 5,
+        "description": "Badge inline com nota fiscal ao lado do nome do órgão"
+      },
+      {
+        "slot_id": "licitacao.detail.after_orgao",
+        "priority": 10,
+        "description": "Painel detalhado com indicadores fiscais"
+      },
+      {
+        "slot_id": "licitacao.detail.after_info",
+        "priority": 20,
+        "description": "Seção de resumo fiscal na extensão"
+      }
+    ],
+    "backend_hooks": [
+      {
+        "event": "licitacao.detail.data",
+        "type": "filter",
+        "description": "Enriquece dados da licitação com informações fiscais do ente"
+      }
+    ],
+    "event_subscriptions": [
+      "licitacao.viewed"
+    ],
+    "event_publications": []
+  },
+  "permissions": [
+    {
+      "scope": "read:entity.basic",
+      "purpose": "Ler codigo_ibge e esfera da licitação para resolver o ente federativo",
+      "data_minimization": "Apenas codigo_ibge, esfera e cnpj_orgao"
+    }
+  ],
+  "compatibility": {
+    "core_version_range": ">=2.0.0"
+  },
+  "security": {
+    "declared_egress_domains": [],
+    "data_classification": ["public"],
+    "stores_personal_data": false,
+    "crypto_usage": {
+      "at_rest": false,
+      "in_transit": false
+    },
+    "threat_surface": []
+  },
+  "distribution": {
+    "visibility": "public",
+    "pricing_model": "free",
+    "regions": ["BR"]
+  }
+}

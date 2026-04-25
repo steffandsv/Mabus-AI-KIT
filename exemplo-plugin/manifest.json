@@ -1,0 +1,17 @@
+{
+  "id": "exemplo-contador",
+  "name": "Contador de Licitações",
+  "version": "1.0.0",
+  "description": "Widget simples que conta quantas licitações você visualizou hoje. Exemplo perfeito para começar a desenvolver.",
+  "author": "Mabus Dev Team",
+  "entry_point": "main.js",
+  "type": "widget",
+  "permissions": ["storage", "hooks", "ui"],
+  "ui": {
+    "slots": ["dashboard.main"]
+  },
+  "distribution": {
+    "pricing_model": "free",
+    "price": "0"
+  }
+}
