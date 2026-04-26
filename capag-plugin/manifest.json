@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "plugin_id": "com.mabus.capag",
+  "name": "Capacidade de Pagamento (CAPAG)",
+  "version": "1.0.0",
+  "description": "Exibe a nota CAPAG (Capacidade de Pagamento) do ente federativo associado ao órgão comprador nas licitações. Proxy de saúde fiscal do ente.",
+  "type": "integration_connector",
+  "category": "analytics",
+  "entrypoints": {
+    "ui_slots": [],
+    "enrichment_slots": [
+      {
+        "slot_id": "licitacao.detail.orgao_badge",
+        "priority": 5,
+        "description": "Badge inline com a nota da CAPAG ao lado do nome do órgão"
+      },
+      {
+        "slot_id": "licitacao.card.badge",
+        "priority": 5,
+        "description": "Badge nos cards da licitação"
+      },
+      {
+        "slot_id": "licitacao.detail.after_orgao",
+        "priority": 10,
+        "description": "Painel detalhado com indicadores da CAPAG"
+      }
+    ],
+    "backend_hooks": [
+      {
+        "event": "licitacao.detail.data",
+        "type": "filter",
+        "description": "Enriquece a licitação com a nota da CAPAG"
+      },
+      {
+        "event": "licitacao.cards.data",
+        "type": "filter",
+        "description": "Enriquece os cards das licitações com a nota da CAPAG"
+      }
+    ],
+    "event_subscriptions": [],
+    "event_publications": []
+  },
+  "permissions": [
+    {
+      "scope": "read:entity.basic",
+      "purpose": "Ler codigo_ibge, uf e esfera da licitação para buscar a CAPAG",
+      "data_minimization": "Apenas codigo_ibge, uf e esfera"
+    },
+    {
+      "scope": "external:http.egress",
+      "purpose": "Consultar a API do Tesouro Transparente (CKAN)"
+    }
+  ],
+  "security": {
+    "declared_egress_domains": [
+      "tesourotransparente.gov.br",
+      "apidatalake.tesouro.gov.br"
+    ],
+    "data_classification": ["public"],
+    "stores_personal_data": false
+  },
+  "distribution": {
+    "visibility": "public",
+    "pricing_model": "free"
+  }
+}

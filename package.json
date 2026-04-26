@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "> Kit de desenvolvimento para criar plugins na plataforma **Mabus** usando Inteligência Artificial.   > Sem saber programar. Usando qualquer agente de IA.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steffandsv/Mabus-AI-KIT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/steffandsv/Mabus-AI-KIT/issues"
+  },
+  "homepage": "https://github.com/steffandsv/Mabus-AI-KIT#readme",
+  "dependencies": {
+    "node-cron": "^4.2.1",
+    "pg": "^8.20.0",
+    "undici": "^8.1.0",
+    "xlsx": "^0.18.5"
+  }
+}
